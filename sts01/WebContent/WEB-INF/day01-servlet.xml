@@ -6,8 +6,12 @@
 	<!-- bean의 이름을 url로 인식하는  -->
 	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
 	<bean name="/index.bit" class="com.bit.controller.IndexController"></bean>
-	<bean name="/main.bit" class="com.bit.controller.MainController"></bean>
+	<bean name="/main.bit" class="com.bit.controller.MainController">
+		<!-- field값 주입 -->
+		<property name="msg" value="123456"></property>
+	</bean>
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 위 클래스에 잇는 field값에 value 주입 -->
 		<property name="prefix" value="/WEB-INF/view/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>

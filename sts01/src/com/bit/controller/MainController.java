@@ -7,6 +7,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 public class MainController implements Controller {
+	String msg;
+	
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -16,7 +21,7 @@ public class MainController implements Controller {
 		
 		//msg를 보내는 방법 - 내부적으로는 같다.
 //		request.setAttribute("msg", "환영합니다.");
-		mav.addObject("msg","환영!");
+		mav.addObject("msg",msg);
 		return mav;
 	}
 
