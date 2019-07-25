@@ -10,6 +10,11 @@ import com.bit.day02.model.Day02Dao;
 import com.bit.day02.model.entity.Day02Vo;
 
 public class InsertController implements Controller {
+	private Day02Dao dao;
+	
+	public void setDao(Day02Dao dao) {
+		this.dao = dao;
+	}
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -17,7 +22,6 @@ public class InsertController implements Controller {
 		ModelAndView mav = new ModelAndView();
 		if(request.getMethod().equals("POST")) {
 			Day02Vo bean = new Day02Vo();
-			Day02Dao dao =new Day02Dao();
 			bean.setName(request.getParameter("name"));
 			bean.setSub(request.getParameter("sub"));
 			bean.setContent(request.getParameter("content"));
