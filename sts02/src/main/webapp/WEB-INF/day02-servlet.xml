@@ -5,10 +5,10 @@
 
 	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
 	
-	<bean name="/index.bit" class="com.bit.day02.controller.ShowController">
+	<bean name="/index.bit" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
 		<property name="viewName" value="index"></property>
 	</bean>
-	<bean name="/bbs/add.bit" class="com.bit.day02.controller.ShowController">
+	<bean name="/bbs/add.bit" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
 		<property name="viewName" value="add"></property>
 	</bean>
 	
