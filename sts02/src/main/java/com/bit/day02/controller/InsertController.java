@@ -13,9 +13,15 @@ public class InsertController implements Controller {
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
 		ModelAndView mav = new ModelAndView();
 		if(request.getMethod().equals("POST")) {
-
+			Day02Vo bean = new Day02Vo();
+			Day02Dao dao =new Day02Dao();
+			bean.setName(request.getParameter("name"));
+			bean.setSub(request.getParameter("sub"));
+			bean.setContent(request.getParameter("content"));
+			dao.insertOne(bean);
 			mav.setViewName("redirect:list.bit");
 		}else {
 			mav.setViewName("add");

@@ -52,4 +52,26 @@ public class Day02Dao {
 		}
 		return list;
 	}
+
+	public void insertOne(Day02Vo bean) throws  SQLException {
+		String sql = "INSERT INTO day02(name,sub,content,nalja) VALUES(?,?,?,NOW())";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bean.getName());
+			pstmt.setString(2, bean.getSub());
+			pstmt.setString(3, bean.getContent());
+			int result = pstmt.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if(pstmt!=null) pstmt.close();
+			if(conn!=null) conn.close();
+		}
+		
+	}
 }
