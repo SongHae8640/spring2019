@@ -1,0 +1,23 @@
+-spring dependency 추가
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-webmvc</artifactId>
+  		<version>3.1.4.RELEASE</version>
+  	</dependency>
+	버전을 일치시켜서 사용하는게 좋다. 버전이 다르면 오류 가능성 
+
+-spring tool 
+	ini에서 최소 사양을 1024mb, 최대 사양을 2048mb로
+
+-새로운 환경설정
+	새로운 워크스페이스
+
+bean들은 다 class를 가지고 있음
+	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+	<bean name="/index.bit" class="com.bit.controller.IndexController"></bean>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+dispatcher가 받아들이는 bean은 class 즉, 하나의 클래스를 (객체 생성하고) 호출하는 것
+=싱글턴(하나로 돌려쓰는) 패턴을 사용 > 자원의 효율적인 관리

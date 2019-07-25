@@ -15,6 +15,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>day01</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>/index.bit</url-pattern>
   </servlet-mapping>
 </web-app>
