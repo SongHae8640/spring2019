@@ -11,7 +11,6 @@ import java.util.List;
 import com.bit.day02.model.entity.Day02Vo;
 
 public class Day02Dao {
-	
 
 	public Day02Dao() {
 	}
@@ -73,5 +72,32 @@ public class Day02Dao {
 			if(conn!=null) conn.close();
 		}
 		
+	}
+
+	public Day02Vo selectOne(int num) throws ClassNotFoundException, SQLException {
+		String sql = "SELECT * FROM day02 WHERE num = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return new Day02Vo(
+						rs.getInt("num"), 
+						rs.getString("name"), 
+						rs.getString("sub"), 
+						rs.getString("content"), 
+						rs.getDate("nalja")
+						);
+			}	
+		}finally {
+			if(rs!=null) rs.close();
+			if(pstmt!=null) pstmt.close();
+			if(conn!=null) conn.close();
+		}
+		return null;
 	}
 }

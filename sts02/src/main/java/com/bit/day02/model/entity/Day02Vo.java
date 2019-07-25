@@ -42,6 +42,16 @@ public class Day02Vo {
 		this.nalja = nalja;
 	}
 
+	
+	public Day02Vo(int num, String name, String sub, String content, Date nalja) {
+		super();
+		this.num = num;
+		this.name = name;
+		this.sub = sub;
+		this.content = content;
+		this.nalja = nalja;
+	}
+
 	@Override
 	public String toString() {
 		return "Day02Vo [num=" + num + ", name=" + name + ", sub=" + sub + ", content=" + content + ", nalja=" + nalja

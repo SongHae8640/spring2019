@@ -21,6 +21,9 @@
 	<bean name="/bbs/insert.bit" class="com.bit.day02.controller.InsertController">
 		<property name="dao" ref="dao"></property>
 	</bean>
+	<bean name="/bbs/detail.bit" class="com.bit.day02.controller.DetailController">
+		<property name="dao" ref="dao"></property>
+	</bean>
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/"></property>
