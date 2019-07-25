@@ -5,7 +5,7 @@
 
 	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
 	<bean name="/index.bit" class="com.bit.day02.controller.IndexController"></bean>
-	
+	<bean name="/bbs/list.bit" class="com.bit.day02.controller.ListController"></bean>
 	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/"></property>

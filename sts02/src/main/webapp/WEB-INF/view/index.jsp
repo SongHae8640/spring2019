@@ -8,6 +8,8 @@
 </head>
 <body>
 	<h1>환영합니다.(view/index.jsp)</h1>
+	
+	<a href="bbs/list.bit">List</a>
 
 </body>
 </html>
