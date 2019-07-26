@@ -1,0 +1,52 @@
+-환경 설정
+	.setting 에 ini 파일에 서블릿을 3.1
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <fixed facet="wst.jsdt.web"/>
+  <installed facet="jst.web" version="3.1"/>
+  <installed facet="wst.jsdt.web" version="1.0"/>
+  <installed facet="java" version="1.8"/>
+</faceted-project>
+
+
+-scope에 대해
+	servlet은 배포할때 빼야함. 서버 내부에 클래스가 있기 때문에 중복이 일어나서
+	>dependency로 추가할꺼면 scope를 설정해줘서 사용
+
+	junit은 테스트까지만 사용하기 때문에 scope를 test로 
+	servlet은 배포 과정에서 서배 내부에 있는 클래스를 사용하기 때문에 컴파일 시점에만 있으면 됨
+
+	compile : default
+	provided : 배포할 환경을 가지고 있을때 사용
+	runtime : 실행에 필요할 때 
+	test : 테스트 과정에서만 필요할 때
+	system : 운영체제
+
+-POM
+	Effective POM는 maven이 가지고 있는 xml. 
+	프로젝트에서 사용할 때 pom.xml에 maven의 xml을 추가 또는 오버라이드해서 사용
+	오버라이딩 된 최종 xml을 보여줌(수정 불가, 수정하려면 pom.xml을 수정해야함)
+
+	pom.xml의 maven.compiler를 수정하면 plugin에 properties를 추가하지 않아도 됨
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>	
+
+	혹시 안바뀔수도 있으니 따로  설정 해주는 것이 좋음
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.0</version>
+          <configuration>
+          	<source>1.8</source>
+          	<target>1.8</target>
+          </configuration>
+        </plugin>
+	
+
+
+-maven build
+	앞의 build를 실행. 없으면 새로 시작
+	goal에 jetty:run 하고 실행 하면 이클립스에서 콘솔이 진행 됨
+	종료 할땐 콘솔 종로
