@@ -8,6 +8,12 @@
   <installed facet="java" version="1.8"/>
 </faceted-project>
 
+	spring-webmvc 추가
+	spring-jdbc추가
+	jstl 추가
+	taglib 추가
+	
+
 
 -scope에 대해
 	servlet은 배포할때 빼야함. 서버 내부에 클래스가 있기 때문에 중복이 일어나서
@@ -50,3 +56,34 @@
 	앞의 build를 실행. 없으면 새로 시작
 	goal에 jetty:run 하고 실행 하면 이클립스에서 콘솔이 진행 됨
 	종료 할땐 콘솔 종로
+
+
+-인코딩
+	2가지 방식 : 리스너 처리, 필터 처리
+	spring에 있는 필터를 이용한 방식
+	org.springframework.web.filter.CharacterEncodingFilter 사용
+	
+	인코딩 방식은 org.springframework.web.filter.CharacterEncodingFilter에 encoding 값을 정해줌
+  <filter>
+  	<filter-name>encodingFilter</filter-name>
+  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>encodingFilter</filter-name>
+  	<url-pattern>*.bit</url-pattern>
+  </filter-mapping>
+	이제 POST방식에서 request 인코딩이 필요 없음
+	리스너 > (필터 > (서블릿 -> 서블릿) > 필터 ) > 리스너
+
+-handler
+	SimpleUrlHandlerMapping 사용
+	urlMap을 사용 url과 controller객체를 담음
+	>map을 통해서 주입
+
+
+
+maven dependency 추가, 인코딩, handler추가, bootstrap추가, index화면
