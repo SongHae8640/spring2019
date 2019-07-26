@@ -1,0 +1,46 @@
+-db
+mariaDB는 클라우드 용, MySql은 사용자용 으로 개발됨 
+
+-프로젝트 생성
+	maven으로
+	버전 맞춰줌 depenency에 junit 버전 수정, servlet 추가
+	.setting에서 xml파일에 jst버전 수정
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <fixed facet="wst.jsdt.web"/>
+  <installed facet="jst.web" version="3.1"/>
+  <installed facet="wst.jsdt.web" version="1.0"/>
+  <installed facet="java" version="1.8"/>
+</faceted-project>
+
+
+-마리아DB
+	접근 
+		C:\Users\USER>mysql -u root -p
+		Enter password: *****
+	
+	계정 생성
+		CREATE USER 'scott'@'%' identified by 'tiger';
+
+	DB 생성
+		MariaDB [(none)]> CREATE database xe;
+
+	권한 부여
+		 grant all on xe.* to 'scott'@'%';
+		 grant all on xe.* to 'scott'@'localhost';
+
+	새로고침 
+		MariaDB [(none)]> flush privileges;
+
+	db사용
+		use ex
+
+	heidiSQL을 통해서 위 모든 것이 gui로 가능
+
+
+
+컨트롤러에도 기능적인 차이가 있음 
+	> 그냥 페이지 보여주는 거라면 하나로 
+	>아니면 따로 
+
+dao를 싱글턴 방식으로 사용하기 위해 field로 보내서 setter로 받아서 사용

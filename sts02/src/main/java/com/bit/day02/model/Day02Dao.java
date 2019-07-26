@@ -100,4 +100,45 @@ public class Day02Dao {
 		}
 		return null;
 	}
+
+	public int updateOne(Day02Vo bean) throws ClassNotFoundException, SQLException {
+		String sql ="UPDATE day02 SET sub = ?, content= ?  WHERE num =?";
+		int result = -1;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bean.getSub());
+			pstmt.setString(2, bean.getContent());
+			pstmt.setInt(3, bean.getNum());
+			result = pstmt.executeUpdate();
+		}finally {
+			if(pstmt!=null) pstmt.close();
+			if(conn!=null) conn.close();
+		}
+		return result;
+	}
+
+	public int deleteOne(int num) throws ClassNotFoundException, SQLException {
+		String sql ="DELETE FROM day02 WHERE num =?";
+		int result = -1;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			result = pstmt.executeUpdate();
+		}finally {
+			if(pstmt!=null) pstmt.close();
+			if(conn!=null) conn.close();
+			return result;
+		}
+		
+	}
 }
