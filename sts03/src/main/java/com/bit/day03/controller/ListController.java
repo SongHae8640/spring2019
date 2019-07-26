@@ -1,0 +1,31 @@
+package com.bit.day03.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
+import com.bit.day03.model.Day02Dao;
+import com.bit.day03.model.Day02Dao1;
+import com.bit.day03.model.Day02Dao2;
+
+public class ListController implements Controller {
+	Day02Dao dao;
+	
+	public void setDao(Day02Dao dao) {
+		System.out.println("listController");
+		this.dao = dao;
+	}
+
+	@Override
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("alist", dao.selectAll());
+		mav.setViewName("list");
+		System.out.println("listController"+mav.toString());
+		return mav;
+	}
+
+}

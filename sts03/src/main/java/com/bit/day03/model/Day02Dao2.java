@@ -1,0 +1,78 @@
+package com.bit.day03.model;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
+import org.springframework.jdbc.core.RowMapper;
+
+import com.bit.day03.model.entity.Day02Vo;
+
+public class Day02Dao2 implements Day02Dao{
+	JdbcTemplate jdbcTemplate;
+	
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+	
+	public List<Day02Vo> selectAll(){
+		String sql ="SELECT * FROM day02";
+		RowMapper<Day02Vo> rowMapper = new RowMapper<Day02Vo>() {
+			
+			@Override
+			public Day02Vo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return new Day02Vo(
+						rs.getInt("num"), 
+						rs.getString("name"), 
+						rs.getString("sub"), 
+						rs.getString("content"), 
+						rs.getDate("nalja")
+						);
+			}
+		};
+		return jdbcTemplate.query(sql, rowMapper);
+	}
+
+	@Override
+	public void insertOne(Day02Vo bean) {
+		String sql ="INSERT INTO day02(name, sub, content,nalja) VALUE(?,?,?,NOW())";
+		jdbcTemplate.update(sql, new Object[] {bean.getName(), bean.getSub(), bean.getContent()});
+	}
+
+	@Override
+	public Day02Vo selectOne(int num) {
+		String sql = "SELECT * FROM day02 WHERE num=?";
+		RowMapper<Day02Vo> rowMapper = new RowMapper<Day02Vo>() {
+			
+			@Override
+			public Day02Vo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return new Day02Vo(
+						rs.getInt("num"), 
+						rs.getString("name"), 
+						rs.getString("sub"), 
+						rs.getString("content"), 
+						rs.getDate("nalja")
+						);
+			}
+		};
+		
+		return (Day02Vo) jdbcTemplate.queryForObject(sql, rowMapper, new Object[] {num});
+	}
+
+	@Override
+	public int updateOne(Day02Vo bean) {
+		String sql = "UPDATE day02 SET sub=?, name=?, content=? WHERE num=?";
+		return jdbcTemplate.update(sql, 
+				new Object[] {bean.getSub(),bean.getName(),bean.getContent(),bean.getNum()}
+		);
+	}
+
+	@Override
+	public int updateOne(int num) {
+		String sql = "DELETE FROM day02 WHERE num=?";
+		return jdbcTemplate.update(sql, num);
+	}
+
+}
