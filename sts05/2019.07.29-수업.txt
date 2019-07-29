@@ -19,7 +19,7 @@ main/java나 main/resources나 동일 패키지로 인식함 > war하면 class 폴더 안으로 같
 (어나미너스에서 로컬 클래스의 final이 생략 가능)
 
 -트랜젝션 처리
-	dao2에서는 다른 방식으로 conn을 받아와서 autocommit을 처리할 수 있어야 함 > PreparedStatementCreator
+	dao2에서는 다른 방식으로 conn을 받아와 서 autocommit을 처리할 수 있어야 함 > PreparedStatementCreator
 	PreparedStatementCreator를 2번 호출했을때의 conn이 동일한 conn인가?? > 다른 객체(connection pool이기 때문에)
 		> org.springframework.jdbc.datasource.DataSourceTransactionManager.class
 		conn가 같은 객체이고 (conn의 갯수 제한 때문에) 다른 객체가 나오더라도
