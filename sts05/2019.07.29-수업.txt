@@ -1,0 +1,8 @@
+리스너 시점에 어플래케이션컨택스트를 입력 시킴
+	spring web context에서 리스너를 통해 
+
+패키지 하면 war 압축함
+	war파일 안에 WEB-INF 안에 class가 classpath가 됨 
+
+main/java나 main/resources나 동일 패키지로 인식함 > war하면 class 폴더 안으로 같이 들어감
+
