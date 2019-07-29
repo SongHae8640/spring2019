@@ -1,22 +1,41 @@
-리스너 시점에 어플래케이션컨택스트를 입력 시킴
-	spring web context에서 리스너를 통해 
+-Context 설정
+	applicationContext : 공통 기능을 할 수 있는 Bean 설정(Datasource, Service 등) , 각 Servlet에서 공유 할 수 있는 Bean
+	ServletContext : Servlet구성에 필요한 Bean 설정(controller, interceptor, mappingHandler 등)
+				
+	리스너 시점에 어플래케이션컨택스트를 입력 시킴(spring web context에서 리스너를 통해)
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	contextConfigLocation의 applicationContext가 classpath가 하위에 있는 이유
+		패키지 하면 war 압축함, war파일 안에 WEB-INF 안에 class가 classpath가 됨 
+		main/java나 main/resources나 동일 패키지로 인식함 > war하면 class 폴더 안으로 같이 들어감
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:/applicationContext.xml</param-value>
+	</context-param>
 
-패키지 하면 war 압축함
-	war파일 안에 WEB-INF 안에 class가 classpath가 됨 
 
-main/java나 main/resources나 동일 패키지로 인식함 > war하면 class 폴더 안으로 같이 들어감
-
+-Interceptor
+	컨트롤러에서 들어오는 요청 request와 나가는 응답 responese를 가로채는 역할(filter와 유사)
+	호출 시점: Filter > DispatcherServlet > Interceptor > Contorller > Interceptor > DispatcherServlet > Filter 
+	설정 위치 : Fiter는 web.xml, interceptor는 spring-servlet.xml
+	구현 방식 : Filter는 web.xml에서 설정, Interceptor는 설정 + 메서드 구현 필요
+	
 
 -HandlerInterceptorAdapter
 	순서 : preHandle()  >  controller > PostHandle() > afterCompletion()
-	
+	매개변수 Object : Dispatcher의 HandlerMappgin이 찾아준 컨트롤러. 
 	preHandle : 리턴 타입이 boolean으로 false 면 이후 진행 안됨, 활용) 로그인 여부에 따른 페이지 처리
 	PostHandle : controller이후 . 뷰를 어떤 걸로 쓸지 결정 > 뷰 주소 변경 및 추가
 	afterCompletion : 뷰로 가기전에 , exception객체가 있기 때문에 오류 처리
 
-	페이지에 따라 interceptro 하고 싶은것 만 잡아서 사용 가능
+	페이지에 따라 interceptor 하고 싶은것 만 잡아서 사용 가능
 
-(어나미너스에서 로컬 클래스의 final이 생략 가능)
+-anonymous 클래스 밖 지역 변수를 접근 할때는 왜 final?
+	스레드 세이프 하지 않기 때문
+	자세한 내용은 https://blog.fupfin.com/?p=50
+	
 
 -트랜젝션 처리
 	dao2에서는 다른 방식으로 conn을 받아와 서 autocommit을 처리할 수 있어야 함 > PreparedStatementCreator

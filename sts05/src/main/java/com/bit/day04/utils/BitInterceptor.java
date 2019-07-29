@@ -13,6 +13,7 @@ public class BitInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		log.debug("BitInterceptor :: preHandle()");
+		log.debug(handler.toString());	//handler는 해당 controller 객체
 		
 		return super.preHandle(request, response, handler);
 	}
