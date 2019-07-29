@@ -18,7 +18,7 @@ public class DetailController implements Controller{
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int num =Integer.parseInt(request.getParameter("idx"));
-		return new ModelAndView("datail", "bean", day02Dao.selectOne(num));
+		return new ModelAndView("detail", "bean", day02Dao.selectOne(num));
 		
 	}
 
