@@ -6,3 +6,13 @@
 
 main/java나 main/resources나 동일 패키지로 인식함 > war하면 class 폴더 안으로 같이 들어감
 
+
+-HandlerInterceptorAdapter
+	순서 : preHandle()  >  controller > PostHandle() > afterCompletion()
+	
+	preHandle : 리턴 타입이 boolean으로 false 면 이후 진행 안됨, 활용) 로그인 여부에 따른 페이지 처리
+	PostHandle : controller이후 . 뷰를 어떤 걸로 쓸지 결정 > 뷰 주소 변경 및 추가
+	afterCompletion : 뷰로 가기전에 , exception객체가 있기 때문에 오류 처리
+
+	페이지에 따라 interceptro 하고 싶은것 만 잡아서 사용 가능
+
