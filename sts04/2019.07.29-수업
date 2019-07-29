@@ -1,0 +1,33 @@
+(참고교재 : 토비의 스프링)
+applicationContext.xml 생성
+읽어들일 때는 
+org.springframework.context.support.ClassPathXmlApplicationContext(파일이름) 클래스
+org.springframework.context.support.FileSystemXmlApplicationContext(패스+파일이름) 클래스
+둘의 특징을 합쳐놓은 GenericXmlApplicationContext(패스+파일이름 or classPath) 클래스
+ --패스+파일이름으로 할 시 xml파일의 위치는 실행위치 기준으로 패스를 넣어주어야 한다. 클래스경로로 넣을 시 classpath:/~; 스타일로 넣어주어야 한다
+
+둘다 ApplicationContext 클래스를 상속받고 있음
+bean 하위 태그
+	<property> name값 필드에 value값을 넣어준다.
+	<constructor-arg> value값을 생성자 인자 에 넣어줄 수 있다. (해당타입을 인자로 받는 생성자가 있어야 겠지)
+
+제어의 역전 IoC(invert of controll) : 제어를 각 클래스에서 하는게 아니라 컨테이너에서 할 수 있도록 하는 방식.
+의존성 주입 DI (Dependency Injection vb ): 소스코드 내부가 아닌 외부의 설정파일을 통해 소스를 관리 할 수 있게하는 방식.
+
+-----스프링 xml파일 자료구조 주입--
+배열			list			set			map				property
+<property name="">	<property name="">	<property name="">	<property name="">		<property name="">
+<array>			<list>			<set>			<map>				<props>
+<value></value>		<value></value>		<value></value>		<entry key="" value=""></entry>	<prop key="">value</prop>
+<value></value>		<value></value>		<value></value>		<entry key="" value=""></entry>	<prop key="">value</prop>
+</array>		</list>			</set>			</map				</props>
+</property>		</property>		</property>		</property>			</property>
+
+오늘 사용한 dataSource 클래스 org.springframework.jdbc.datasource.DriverManagerDataSource
+dataSource의 property 로 loginTimeout 세션 유지시간 을 설정할 수 있다. 디폴트는 무한대(0)
+
+Junit testcase 생성하기
+ test 폴더에 대놓고 생성하던지, 테스트가 필요한 클래스에 우클릭 => new => junit test case 를 생성. next를 눌러 포함하고 싶은 메소드들을 지정할 수 있다.
+
+Junit testcase클래스에 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+를 주고 test앞에 숫자를 주어 테스트 순서를 제어할 수 있다 ex) test1SelectAll() , test2UpdateOne()...
