@@ -10,12 +10,22 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.bit.day04.model.entity.Day02Vo;
 import com.mysql.jdbc.jdbc2.optional.PreparedStatementWrapper;
 
 public class Day02DaoImpl2 implements Day02Dao {
 	JdbcTemplate jdbcTemplate;
+	PlatformTransactionManager transactionManager;
+	
+	public void setTransactionManager(PlatformTransactionManager transactionManager) {
+		this.transactionManager = transactionManager;
+	}
 	
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
@@ -83,34 +93,46 @@ public class Day02DaoImpl2 implements Day02Dao {
 	@Override
 	public void insertOne(Day02Vo bean) {
 		String sql ="INSERT INTO day02(name,sub,content,nalja) VALUES(?,?,?,now())";
-		PreparedStatementCreator psc = new PreparedStatementCreator() {
-			
-			@Override
-			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, bean.getName());
-				pstmt.setString(2, bean.getSub());
-				pstmt.setString(3, bean.getContent());
-				return pstmt;
-			}
-		};
-		jdbcTemplate.update(psc);
-		
-		
-		
 		String sql2 ="INSERT INTO day02(name,sub,content,nalja) VALUES(?,?,?,now())";
-		PreparedStatementCreator psc2 = new PreparedStatementCreator() {
+		
+		TransactionDefinition definition = new DefaultTransactionDefinition();
+		TransactionStatus status= transactionManager.getTransaction(definition);	
+		
+		
+		
+		try {
+			PreparedStatementCreator psc = new PreparedStatementCreator() {
+				
+				@Override
+				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+					PreparedStatement pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, bean.getName());
+					pstmt.setString(2, bean.getSub());
+					pstmt.setString(3, bean.getContent());
+					return pstmt;
+				}
+			};
+			jdbcTemplate.update(psc);
 			
-			@Override
-			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-				PreparedStatement pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, bean.getName());
-				pstmt.setString(2, bean.getSub());
-				pstmt.setString(3, bean.getContent());
-				return pstmt;
-			}
-		};
-		jdbcTemplate.update(psc2);
+			
+			
+			PreparedStatementCreator psc2 = new PreparedStatementCreator() {
+				
+				@Override
+				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+					PreparedStatement pstmt = con.prepareStatement(sql2);
+					pstmt.setString(1, bean.getName());
+					pstmt.setString(2, bean.getSub());
+					pstmt.setString(3, bean.getContent());
+					return pstmt;
+				}
+			};
+			jdbcTemplate.update(psc2);
+		
+			transactionManager.commit(status);
+		}catch (Exception e) {
+			transactionManager.rollback(status);
+		}
 		
 	}
 
