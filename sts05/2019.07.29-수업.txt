@@ -16,3 +16,8 @@ main/java나 main/resources나 동일 패키지로 인식함 > war하면 class 폴더 안으로 같
 
 	페이지에 따라 interceptro 하고 싶은것 만 잡아서 사용 가능
 
+(어나미너스에서 로컬 클래스의 final이 생략 가능)
+
+-트랜젝션 처리
+	dao2에서는 다른 방식으로 conn을 받아와서 autocommit을 처리할 수 있어야 함 > PreparedStatementCreator
+	PreparedStatementCreator를 2번 호출했을때의 conn이 동일한 conn인가?? > 다른 객체(connection pool이기 때문에)

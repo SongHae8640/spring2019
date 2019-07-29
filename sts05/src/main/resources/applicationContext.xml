@@ -17,7 +17,7 @@
 	</bean>
 
 	<bean id="day02Dao"
-		class="com.bit.day04.model.Day02DaoImpl">
+		class="com.bit.day04.model.Day02DaoImpl2">
 		<property name="jdbcTemplate" ref="jdbcTemplate"></property>	
 	</bean>
 </beans>
