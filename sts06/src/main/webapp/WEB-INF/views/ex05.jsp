@@ -8,6 +8,8 @@
 </head>
 <body>
 	<h1>ex05 page</h1>
-
+	<form action="ex06" method="POST">
+		<button type="submit">go ex05</button>
+	</form>
 </body>
 </html>

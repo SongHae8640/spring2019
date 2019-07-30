@@ -9,5 +9,6 @@
 <body>
 	<h1>ex06 page</h1>
 
+
 </body>
 </html>
