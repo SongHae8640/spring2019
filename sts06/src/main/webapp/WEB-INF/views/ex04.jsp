@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>ex page</h1>
+	<h1>ex04 page</h1>
 
 </body>
 </html>
