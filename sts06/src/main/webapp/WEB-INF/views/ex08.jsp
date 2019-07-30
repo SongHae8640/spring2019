@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>ex01 page</h1>
-	<a>${msg }</a>
+	<h1>ex08 page</h1>
+
+
 </body>
 </html>

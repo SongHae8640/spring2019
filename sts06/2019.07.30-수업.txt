@@ -45,6 +45,19 @@
 		class에도 붙일 수 있게 만든 이유
 			하나의 클래스 안에 여러개의 주소 매핑을 가능하게 하기 위해서
 		value와 method를 통해서 호출 방식에 따른 매핑 가능하게 함
-		
+		void로 해도 view 가 결정 됨 > method 명 x , RequestMapping의 value의 값(주소)에 의해서 결정
+		확장명이 같이 들어오면 이를 제외하고 매핑함
+
+	뷰의 결정방법
+		mav 
+		string
+		void
+		직접 뷰 랜더링
+
+	값 전달 방법
+		req.setAttr( , )
+		mav.addObj( , )
+
 ==================
+	파라미터
 
