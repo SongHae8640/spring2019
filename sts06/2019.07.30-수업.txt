@@ -69,4 +69,16 @@
 			PathVariable은 생략 불가능(생략하면 주소 접근과 구분 불가이기 때문에)
 			PathVariable의 인자값(value)는 생략 가능
 
+	@ModelAttribute
+		bean객체를 field로 주입
+		modelAttr로 값 실어 나르기
+		넘어온 param의 이름 setter를 호출 할 수 있도록 이름이 Vo의 field명과 동일해야함
+		vo의 이름이 @ModelAttribute의 이름과 같다면 vo의 이름을 생략 가능
+		param을 받지 않은 경우는
+		메서드 안에서도 주입이 가능은 하다.
+
+	3.x의 문법은 끝
+	4.x에서 어노테이션이 많이 늘어남 
+
+
 ==================
