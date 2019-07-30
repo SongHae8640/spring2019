@@ -1,0 +1,36 @@
+스프링이 2.5부터 주목 받기 시작함 
+	갱신 안되고, 문제 해결 잘 안되고, 세팅부터가 힘든 상태
+
+스프링 3.x 부터 활성화
+	4.x보다 에러도 적어서 사용 되었음 
+
+-환경설정
+	open perspective를 spring으로 변경
+	new > spring legecy proj > spring MVC proj >(가장 낮은 spring 3.1이 다운 됨)
+
+	기본 세팅이 다 되어 있는 상태
+		main/resources/log4j.xml로 등록되어 있음
+		각 레벨에 따른 정의와 표현방법이 정해져 있음
+
+		web.xml에는 
+		contextConfigLocationdl 우선순위 1로
+		servlet mapping은 /로
+
+		servlet-context.xml에는 
+		org.springframework.web.servlet.view.InternalResourceViewResolver가 이전 처럼 정의 되어 있음
+		bean의 형태가 다름
+			xmlns:beans="http://www.springframework.org/schema/beans" 가 추가 되어서 prefix로 beans로 스키마가 바뀜
+		
+		controller에 보면
+		어노테이션으로 controller가 정의됨. 이를 작동 시키는 것이 servlet-context.xml에 annotation-driven
+	
+-어노테이션
+	xml을 통하지 않고 java 코드를 통해서 페이지 설정(xml은 문서의 갱신이 잘 안됨)
+	pojo지향 하기 때문에 강제로 특정 클래스를 상속하지 않아도 됨 
+	>위 2가지 처리 때문에 문법의 자유도가 높고 ,편리함, 낮은 에러 확율  > spring이 부흥 할 수 있었던 이유
+		(4.x에서는 너무 많아진 어노테이션에 대한 반발로 최소한의 어노테이션을 사용하고 나머지는 java로 처리하기 됨)
+
+
+
+
+컨트롤러와 requestMapping
