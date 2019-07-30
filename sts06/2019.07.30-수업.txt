@@ -87,3 +87,6 @@
 
 
 ==================
+	@Component를 통한 dao 주입
+		Day02DaoImpl가 더 늦게 생성되면  Controller의 dao에 null이 들어가게 된다.
+		>우선순위(순서가 필요) > @Repository를 통해 생성

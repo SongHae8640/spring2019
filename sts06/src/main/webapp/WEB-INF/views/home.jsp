@@ -12,6 +12,6 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<a href="bbs">BBS 입장</a>
+<a href="bbs/list">BBS 입장</a>
 </body>
 </html>
