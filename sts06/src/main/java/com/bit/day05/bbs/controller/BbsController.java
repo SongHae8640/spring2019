@@ -24,6 +24,11 @@ public class BbsController {
 	public void setDay02Dao(Day02Dao day02Dao) {
 		this.day02Dao = day02Dao;
 	}
+	
+	@RequestMapping("/")
+	public String list() {
+		return "redirect:list";
+	}
 
 	@RequestMapping("/list")
 	public String list(Model model) {

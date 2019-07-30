@@ -17,10 +17,6 @@
 			<input type="text" name="msg" id="msg">
 		</div>
 		<div>
-			<label for="msg">id</label>
-			<input type="text" name="id" id="id">
-		</div>
-		<div>
 			<button type="submit">전송</button>
 		</div>
 	</form>

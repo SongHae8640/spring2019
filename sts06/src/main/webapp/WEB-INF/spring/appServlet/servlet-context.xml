@@ -21,6 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- base-package로 시작하는 클래스의 객체 중 컴포넌트가 설정된 클래스를 자동으로 객체 생성한다. -->
 	<context:component-scan base-package="com.bit.day05" />
 	
 	

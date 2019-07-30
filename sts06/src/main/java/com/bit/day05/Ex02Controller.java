@@ -14,7 +14,6 @@ public class Ex02Controller {
 	//원하는 만큼 받아 쓰는 것도 가능
 	@RequestMapping("/ex02")
 	public String mapping(Model model, HttpServletRequest req, HttpServletResponse reps) {
-		
 		return "ex02";
 	}
 }

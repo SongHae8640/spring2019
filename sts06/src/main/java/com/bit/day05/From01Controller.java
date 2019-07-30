@@ -18,8 +18,7 @@ public class From01Controller {
 	@RequestMapping("/ex11")
 	public void ex10(Model model,
 			@ModelAttribute("num") int param1, 
-			@RequestParam String msg,
-			int id){
+			@RequestParam String msg){
 		model.addAttribute("num", param1);
 		model.addAttribute("msg", msg);
 		
