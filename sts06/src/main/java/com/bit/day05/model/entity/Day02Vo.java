@@ -10,6 +10,19 @@ public class Day02Vo {
 	public Day02Vo() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Day02Vo(int num, String sub, String name, String content, Date nalja) {
+		super();
+		this.num = num;
+		this.sub = sub;
+		this.name = name;
+		this.content = content;
+		this.nalja = nalja;
+	}
+
+
 
 	public int getNum() {
 		return num;

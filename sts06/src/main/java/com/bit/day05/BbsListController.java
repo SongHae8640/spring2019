@@ -12,7 +12,7 @@ public class BbsListController implements org.springframework.web.servlet.mvc.Co
 
 
 	@Override
-	@RequestMapping(value= {"/bbs/list","/bbs/","/bbs"})
+//	@RequestMapping(value= {"/bbs/list","/bbs/","/bbs"})
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		
