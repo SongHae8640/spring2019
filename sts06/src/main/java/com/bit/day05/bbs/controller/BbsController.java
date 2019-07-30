@@ -17,7 +17,7 @@ import com.bit.day05.model.entity.Day02Vo;
 @RequestMapping("/bbs")
 public class BbsController {
 	//이름 그래도 자동으로 연결
-	@Autowired
+	@Autowired(required = false)
 	Day02Dao day02Dao;
 	
 
@@ -82,5 +82,22 @@ public class BbsController {
 			return "bbs/edit";
 		}	
 		return "redirect:list";	
+	}
+	
+	
+	/////////////////////////////////////////
+	///////강사님 방식///////////////////////
+	@RequestMapping(value="/add2", method = RequestMethod.GET)
+	public void add2() {}
+	
+	@RequestMapping(value="/add2", method = RequestMethod.POST)
+	public String add2(@ModelAttribute Day02Vo bean) {
+		day02Dao.insertOne(bean);
+		return "redirect:list";
+	}
+	
+	@RequestMapping("detail2")
+	public void one(@RequestParam("idx") int num, Model model) {
+		model.addAttribute("bean", day02Dao.selectOne(num));
 	}
 }

@@ -81,12 +81,39 @@
 	4.x에서 어노테이션이 많이 늘어남 
 
 
+	@어노테인션 책 표 5-1 참고
+	
 	@Autowired (spring 2.5 부터)
 		가장 유사한 객체를 연결시켜줌 
 		위치 : setter 메서드 위 또는 객체 선언 위 
+		속성(제약) : required = true 가능하면 한다 , false이면 이면 필수
+		type일치를 통해 찾아 낸다.(이름과 상관 무) > 원하지 않은 객체가 붙을 수 있다.(상속 관계로 인한 가능성 있)
+		
+	@
+		객체의 이름을 통해서 의존 주입
 
+	@inject
+		@Autowired와 동일한 기능
+		외부 lib으로 가져와서 사용(dependency)
+		목적 : 스프링이 아니여도 사용 가능하게
 
-==================
+	@Resource
+		최근에 많이 씀(성능면에서 좋음)
+		@Autowired와 흡사하지만 @Autowired는 타입으로(by type), @Resource는 이름으로(by name)으로 연결
+	
+
 	@Component를 통한 dao 주입
 		Day02DaoImpl가 더 늦게 생성되면  Controller의 dao에 null이 들어가게 된다.
 		>우선순위(순서가 필요) > @Repository를 통해 생성
+		component-scan을 통해서 컴포넌트를 bean으로 객체 생성시킴 
+		다 컴포넌트일때 어떤 객체를 우선적으로 할지를 지정 하기 위한 어노테이션들이 있음
+
+	@Repository는 conponent를 상속 
+
+
+
+===================
+내일은 
+restfull 방식을 통해서 +
+DB는 H2 DB - 개발자가 test용으로 자주 사용
+

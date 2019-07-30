@@ -15,9 +15,7 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
-	<!-- 
 	<bean id="day02Dao" class="com.bit.day05.model.Day02DaoImpl">
-		<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
 	</bean>
-	-->
 </beans>

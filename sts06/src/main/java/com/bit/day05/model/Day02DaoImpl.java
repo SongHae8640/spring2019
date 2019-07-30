@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.bit.day05.model.entity.Day02Vo;
 
 //@Component(value="day02Dao")
-@Repository(value="day02Dao")
+//@Repository(value="day02Dao")
 public class Day02DaoImpl implements Day02Dao {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -48,6 +48,23 @@ public class Day02DaoImpl implements Day02Dao {
 	public Day02Vo selectOne(final int num) {
 		final String sql = "SELECT * FROM day02 WHERE num =?";
 		
+		return jdbcTemplate.queryForObject(sql,
+				new RowMapper<Day02Vo>() {
+
+					@Override
+					public Day02Vo mapRow(ResultSet rs, int rowNum) throws SQLException {
+						return new Day02Vo(
+								rs.getInt("num"), 
+								rs.getString("sub"), 
+								rs.getString("name"), 
+								rs.getString("content"), 
+								rs.getDate("nalja"));
+					}
+			
+				}, 
+				num);
+		
+		/*
 		return jdbcTemplate.query(
 				new PreparedStatementCreator() {
 					
@@ -71,6 +88,7 @@ public class Day02DaoImpl implements Day02Dao {
 					}
 					
 				}).get(0);
+				*/
 	}
 
 	@Override
